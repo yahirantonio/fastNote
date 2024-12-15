@@ -1,9 +1,18 @@
 <script>
   import Router from "svelte-spa-router";
-  import routes from './routes/routes';
+  import routes from "./routes/routes";
 </script>
 
-<Router {routes} />
+<div id="body" class="min-h-screen min-w-full">
+  <Router {routes} />
+</div>
 
 <style>
+  #body {
+    background: linear-gradient(
+      to bottom right,
+      #fff,
+      rgba(226, 226, 226, 0.8)
+    );
+  }
 </style>
