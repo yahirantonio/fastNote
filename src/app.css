@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .lato-bold {
   font-family: "Lato", serif;
   font-weight: 700;
