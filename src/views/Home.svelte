@@ -17,7 +17,7 @@
       </div>
    </header>
    
-   <h1>Home</h1>
+   <h1 class="font-berkshire_swash text-4xl text-center mt-10">Home</h1>
 </div>
 
 <style lang="postcss">
