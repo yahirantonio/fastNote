@@ -3,7 +3,7 @@
   import routes from "./routes/routes";
 </script>
 
-<div id="body" class="min-h-screen min-w-full">
+<div id="body" class="min-h-screen min-w-full px-20">
   <Router {routes} />
 </div>
 

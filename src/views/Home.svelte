@@ -4,21 +4,19 @@
    import Search from "../lib/Search.svelte";
 </script>
 
-<div class="mx-20">
-   <header class="flex justify-between w-100 pt-3">
-      <div class="flex-none mr-20">
-         <Hamburguer />
-      </div>
-      <div class="flex-1">
-         <Search />
-      </div>
-      <div class="flex-none">
-         <Date />
-      </div>
-   </header>
-   
-   <h1 class="font-berkshire_swash text-4xl text-center mt-10">Home</h1>
-</div>
+<header class="flex justify-between w-100 pt-3">
+   <div class="flex-none mr-20">
+      <Hamburguer />
+   </div>
+   <div class="flex-1">
+      <Search />
+   </div>
+   <div class="flex-none">
+      <Date />
+   </div>
+</header>
+
+<h1 class="font-berkshire_swash text-4xl text-center mt-10">Home</h1>
 
 <style lang="postcss">
 </style>
