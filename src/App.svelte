@@ -12,7 +12,7 @@
     background: linear-gradient(
       to bottom right,
       #fff,
-      rgba(226, 226, 226, 0.8)
+      #E5E5E5
     );
   }
 </style>
