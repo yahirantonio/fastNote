@@ -4,8 +4,19 @@
    import Search from "../lib/Search.svelte";
    import Note from "../lib/Note.svelte";
    import { dataNotes } from "../stores/notes.svelte";
+   import Fuse from "fuse.js";
 
-   let notesShow = $dataNotes.slice(0, 5);
+   const fuseOptions = {
+      keys: ["titulo"],
+   };
+
+   let notesShow = $derived.by(()=>{
+      let notes = $dataNotes.slice(0, 5);
+      const fuse = new Fuse(notes, fuseOptions);
+      return title.length?fuse.search(title).map(values => values.item) : notes
+   })
+   
+   let title = $state("");
 
    let noteSelected = $state(null);
 
@@ -25,7 +36,7 @@
       <Hamburguer />
    </div>
    <div class="flex-1">
-      <Search />
+      <Search bind:title />
    </div>
    <div class="flex-none">
       <Date />
@@ -43,7 +54,6 @@
          tabindex="0"
          onmouseenter={() => (noteSelected = i)}
          onmouseleave={() => (noteSelected = null)}
-         
       >
          <Note {...notes} />
       </div>
