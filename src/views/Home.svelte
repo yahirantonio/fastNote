@@ -10,15 +10,23 @@
       keys: ["titulo"],
    };
 
+   let title = $state("");
+   let date = $state("");
+
    let notesShow = $derived.by(() => {
       let notes = $dataNotes.slice(0, 5);
+      if(date.length) notes = notes.filter(note => note.fecha == date)
+
       const fuse = new Fuse(notes, fuseOptions);
       return title.length
          ? fuse.search(title).map((values) => values.item)
          : notes;
    });
 
-   let title = $state("");
+   
+
+   $inspect(date)
+   $inspect($dataNotes)
 
    let noteSelected = $state(null);
 
@@ -41,7 +49,7 @@
       <Search bind:title />
    </div>
    <div class="flex-none">
-      <Date />
+      <Date bind:date />
    </div>
 </header>
 

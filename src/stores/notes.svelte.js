@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-const date = new Date();
+const date = new Date().toLocaleDateString();
 
 export const dataNotes = writable([
    {
