@@ -9,8 +9,6 @@
 
    let noteSelected = $state(null);
 
-   $inspect(noteSelected);
-
    let peakSequence = $derived.by(() => {
       let length = notesShow.length;
       let half = Math.round(notesShow.length / 2);
