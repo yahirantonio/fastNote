@@ -10,12 +10,14 @@
       keys: ["titulo"],
    };
 
-   let notesShow = $derived.by(()=>{
+   let notesShow = $derived.by(() => {
       let notes = $dataNotes.slice(0, 5);
       const fuse = new Fuse(notes, fuseOptions);
-      return title.length?fuse.search(title).map(values => values.item) : notes
-   })
-   
+      return title.length
+         ? fuse.search(title).map((values) => values.item)
+         : notes;
+   });
+
    let title = $state("");
 
    let noteSelected = $state(null);
@@ -45,10 +47,10 @@
 
 <h1 class="font-berkshire_swash text-4xl text-center my-10">Home</h1>
 
-<div class="flex justify-center">
+<div class="flex justify-evenly">
    {#each notesShow as notes, i}
       <div
-         style:margin-left={i == 0 ? "0px" : "-150px"}
+         style:margin-left={notesShow.length > 3 && i > 0 ? '-150px' : "0px" }
          style:z-index={i == noteSelected ? 99 : peakSequence[i]}
          role="button"
          tabindex="0"
