@@ -2,6 +2,8 @@ import { writable } from "svelte/store";
 
 const date = new Date().toLocaleDateString();
 
+export let isNavbarOpen = writable(false);
+
 export const dataNotes = writable([
    {
       "notaID": 1,

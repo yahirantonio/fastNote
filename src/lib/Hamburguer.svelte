@@ -1,7 +1,13 @@
 <script>
+   import {isNavbarOpen} from '../stores/notes.svelte'
+   function open(){
+      isNavbarOpen.set(true)
+   }
 </script>
 
-<span class="material-symbols-outlined expand"> menu </span>
+<button onclick={open}>
+   <span class="material-symbols-outlined expand"> menu </span>
+</button>
 
 <style>
    .expand {
