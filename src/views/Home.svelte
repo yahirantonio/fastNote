@@ -6,6 +6,7 @@
    import { dataNotes } from "../stores/notes.svelte";
    import Fuse from "fuse.js";
     import Pills from "../lib/animation/Pills.svelte";
+    import Navbar from "./shared/Navbar.svelte";
 
    const fuseOptions = {
       keys: ["titulo"],
@@ -53,6 +54,8 @@
       <Date bind:date />
    </div>
 </header>
+
+<Navbar />
 
 <h1 class="font-berkshire_swash text-4xl text-center my-10">Home</h1>
 
