@@ -2,7 +2,7 @@
    import Date from "../lib/Date.svelte";
    import Hamburguer from "../lib/Hamburguer.svelte";
    import Search from "../lib/Search.svelte";
-   import Note from "../lib/Note.svelte";
+   import NoteCard from "../lib/NoteCard.svelte";
    import { dataNotes } from "../stores/notes.svelte";
    import Fuse from "fuse.js";
     import Pills from "../lib/animation/Pills.svelte";
@@ -68,7 +68,7 @@
          onmouseenter={() => (noteSelected = i)}
          onmouseleave={() => (noteSelected = null)}
       >
-         <Note {...notes} />
+         <NoteCard {...notes} />
       </div>
    {/each}
 </div>
