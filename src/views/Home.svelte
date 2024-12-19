@@ -5,6 +5,7 @@
    import Note from "../lib/Note.svelte";
    import { dataNotes } from "../stores/notes.svelte";
    import Fuse from "fuse.js";
+    import Pills from "../lib/animation/Pills.svelte";
 
    const fuseOptions = {
       keys: ["titulo"],
@@ -54,6 +55,8 @@
 </header>
 
 <h1 class="font-berkshire_swash text-4xl text-center my-10">Home</h1>
+
+<Pills />
 
 <div class="flex justify-evenly">
    {#each notesShow as notes, i}
