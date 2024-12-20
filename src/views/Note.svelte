@@ -2,7 +2,8 @@
    import { untrack } from "svelte";
    import Date from "../lib/Date.svelte";
    import Hamburguer from "../lib/Hamburguer.svelte";
-   import { dataNotes } from "../stores/notes.svelte";
+   import { dataNotes, states } from "../stores/notes.svelte";
+    import Navbar from "./shared/Navbar.svelte";
 
    const { params } = $props();
    const id = $derived(params.id);
@@ -37,6 +38,8 @@
    </div>
 </header>
 
+<Navbar />
+
 <h1 class="font-berkshire_swash text-4xl text-center my-10">Nota</h1>
 <input
    type="text"
@@ -45,6 +48,19 @@
    bind:value={nota.titulo}
    class="shadow-elevated_shadow rounded-lg text-xl"
 />
+<input
+   type="text"
+   name="etiqueta"
+   id="etiqueta"
+   bind:value={nota.etiqueta}
+   class="shadow-elevated_shadow rounded-lg text-xl"
+/>
+
+<select name="estado" id="estado" bind:value={nota.estadoID}>
+   {#each $states as state}
+      <option value={state.estadoID}>{state.estado}</option>
+   {/each}
+</select>
 
 <style lang="postcss">
 </style>

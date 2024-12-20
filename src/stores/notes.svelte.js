@@ -1,8 +1,23 @@
-import { writable } from "svelte/store";
+import { readable, writable } from "svelte/store";
 
 const date = new Date().toLocaleDateString();
 
 export let isNavbarOpen = writable(false);
+
+export let states = readable([
+   {
+      estadoID: 0,
+      estado: "En Progreso"
+   },
+   {
+      estadoID: 1,
+      estado: "Hecho"
+   },
+   {
+      estadoID: 2,
+      estado: "Por Hacer"
+   },
+]);
 
 export const dataNotes = writable([
    {
