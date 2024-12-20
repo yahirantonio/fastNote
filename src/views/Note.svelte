@@ -1,31 +1,31 @@
 <script>
+   import { untrack } from "svelte";
    import Date from "../lib/Date.svelte";
    import Hamburguer from "../lib/Hamburguer.svelte";
-    import { dataNotes } from "../stores/notes.svelte";
+   import { dataNotes } from "../stores/notes.svelte";
 
    const { params } = $props();
-   const id = $derived(params.id)
+   const id = $derived(params.id);
+   
    let date = $state("");
 
    let nota = $state({
-      "titulo": "Titulo...",
-      "texto": "Escribir algo....",
-      "etiqueta": "Personal",
-      "fecha": date,
-      "content": { ops: [{ insert: 'Escribir algo....\n' }] },
-      "estadoID": 0
-   })
+      titulo: "Titulo...",
+      texto: "Escribir algo....",
+      etiqueta: "Personal",
+      fecha: "",
+      content: { ops: [{ insert: "Escribir algo....\n" }] },
+      estadoID: 0,
+   });
 
-   let titulo = {
-      get value() {
-         return $dataNotes.find(note => note.notaID == id)?.titulo ?? nota.titulo
-      },
-      set value(v) {
-         nota.titulo = v
-      }
-   }
+   $effect(() => {
+      id;
+      untrack(() => {
+         if (id) nota = $dataNotes.find((note) => note.notaID == id);
+      });
+   });
 
-   $inspect(nota)
+   $inspect(nota);
 </script>
 
 <header class="flex justify-between w-100 pt-3">
@@ -42,7 +42,7 @@
    type="text"
    name="titulo"
    id="title"
-   bind:value={titulo.value}
+   bind:value={nota.titulo}
    class="shadow-elevated_shadow rounded-lg text-xl"
 />
 
