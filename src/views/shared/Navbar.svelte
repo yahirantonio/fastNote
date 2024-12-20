@@ -37,15 +37,15 @@
          <p>{date.getFullYear()}</p>
       </div>
       <nav class="font-montserrat">
-         <div class="flex gap-3 items-center">
-            <span class="material-symbols-outlined text-3xl mb-2"> home </span>
+         <div class="flex gap-3 items-center mb-1">
+            <span class="material-symbols-outlined text-3xl"> home </span>
             <a class="hover:underline" href="/" use:link>Home</a>
          </div>
          <button
-            class="flex gap-3 items-center"
+            class="flex gap-3 items-center mb-1"
             onclick={() => (showRecentNotes = !showRecentNotes)}
          >
-            <span class="material-symbols-outlined text-3xl mb-2">
+            <span class="material-symbols-outlined text-3xl">
                description
             </span>
             <p class="hover:underline">Recent Note</p>
@@ -59,14 +59,14 @@
                {/each}
             </ul>
          {/if}
-         <div class="flex gap-3 items-center">
-            <span class="material-symbols-outlined text-3xl mb-2">
+         <div class="flex gap-3 items-center mb-1">
+            <span class="material-symbols-outlined text-3xl">
                history
             </span>
             <a class="hover:underline" href="/history" use:link>History</a>
          </div>
-         <div class="flex gap-3 items-center">
-            <span class="material-symbols-outlined text-3xl mb-2">
+         <div class="flex gap-3 items-center mb-1">
+            <span class="material-symbols-outlined text-3xl">
                note_add
             </span>
             <a class="hover:underline" href="/note" use:link>New Note</a>
