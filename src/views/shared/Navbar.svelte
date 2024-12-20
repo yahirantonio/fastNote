@@ -1,23 +1,26 @@
 <script>
-   import { fly } from "svelte/transition";
-   import { isNavbarOpen } from "../../stores/notes.svelte";
-   function close(){
-      isNavbarOpen.set(false)
+   import { fade, fly } from "svelte/transition";
+   import { dataNotes, isNavbarOpen } from "../../stores/notes.svelte";
+   import { link } from "svelte-spa-router";
+   function close() {
+      isNavbarOpen.set(false);
    }
    let date = new Date();
+
+   let notesToShow = $derived.by(() => $dataNotes.slice(0, 3));
+
+   let showRecentNotes = $state(false);
 </script>
 
 {#if $isNavbarOpen}
    <aside
       class="text-white absolute left-0 top-0 h-full w-1/6 z-10 rounded-r-2xl px-4 text-lg"
-      in:fly={{ x: '-100%', duration: 750, opacity:1 }}
-      out:fly={{ x: '-100%', duration: 750, opacity: 1 }}
+      in:fly={{ x: "-100%", duration: 750, opacity: 1 }}
+      out:fly={{ x: "-100%", duration: 750, opacity: 1 }}
    >
-   <button onclick={close} class="w-full text-right mt-10 text-4xl">
-      <span class="material-symbols-outlined">
-         arrow_back_ios
-      </span>
-   </button>
+      <button onclick={close} class="w-full text-right mt-10 text-4xl">
+         <span class="material-symbols-outlined"> arrow_back_ios </span>
+      </button>
       <div class="flex justify-between items-end">
          <img
             src="https://picsum.photos/60/60"
@@ -36,25 +39,37 @@
       <nav class="font-montserrat">
          <div class="flex gap-3 items-center">
             <span class="material-symbols-outlined text-3xl mb-2"> home </span>
-            <p>Home</p>
+            <a class="hover:underline" href="/" use:link>Home</a>
          </div>
-         <div class="flex gap-3">
+         <button
+            class="flex gap-3 items-center"
+            onclick={() => (showRecentNotes = !showRecentNotes)}
+         >
             <span class="material-symbols-outlined text-3xl mb-2">
                description
             </span>
-            <p>Recent Note</p>
-         </div>
-         <div class="flex gap-3">
+            <p class="hover:underline">Recent Note</p>
+         </button>
+         {#if showRecentNotes}
+            <ul class="ml-10 text-sm" in:fade={{duration:500}} out:fade={{duration:500}}>
+               {#each notesToShow as note}
+                  <li class="hover:list-disc">
+                     <a href="/note/{note.notaID}" use:link>{note.titulo}</a>
+                  </li>
+               {/each}
+            </ul>
+         {/if}
+         <div class="flex gap-3 items-center">
             <span class="material-symbols-outlined text-3xl mb-2">
                history
             </span>
-            <p>History</p>
+            <a class="hover:underline" href="/history" use:link>History</a>
          </div>
-         <div class="flex gap-3">
+         <div class="flex gap-3 items-center">
             <span class="material-symbols-outlined text-3xl mb-2">
                note_add
             </span>
-            <p>New Note</p>
+            <a class="hover:underline" href="/note" use:link>New Note</a>
          </div>
       </nav>
    </aside>
