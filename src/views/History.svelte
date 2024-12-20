@@ -128,7 +128,7 @@
    </div>
 </form>
 
-<div class="flex flex-wrap gap-3 justify-end">
+<div class="flex flex-wrap gap-3 justify-end pb-10">
    {#each notesToShow as note}
       <NoteCard {...note} />
    {/each}
