@@ -4,7 +4,7 @@
       titulo = "sin titulo...",
       texto = "sin texto...",
       fecha = new Date(),
-      tag = "no tag",
+      etiqueta = "no tag",
       estadoID = 0,
    } = $props();
 
@@ -33,7 +33,7 @@
    <div class="flex justify-between">
       <p class="font-montserrat text-sm">{fecha}</p>
       <div>
-         <p class="font-montserrat text-xs">{tag}</p>
+         <p class="font-montserrat text-xs">{etiqueta}</p>
       </div>
    </div>
 </div>
