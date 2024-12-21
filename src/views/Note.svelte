@@ -16,9 +16,9 @@
 
    onMount(() => {
       quill = new Quill("#editor", { theme: "snow" });
-      quill.on('text-change',()=>{
-         nota.content = quill.getContents()
-      })
+      quill.on("text-change", () => {
+         nota.content = quill.getContents();
+      });
    });
 
    let initialNote = {
@@ -61,23 +61,23 @@
    });
 
    function saveNote() {
-      nota.texto = quill.getSemanticHTML()
+      nota.texto = quill.getSemanticHTML();
       if (id) putNote({ ...nota });
       else {
          const notaID = postNote(nota);
          replace("/note/" + notaID);
-      } 
+      }
    }
 
    function deleteNote() {
       if (id) {
          dropNote(nota.notaID);
-         replace("/")
+         replace("/");
       } else replace("/");
    }
 
    $inspect(nota);
-   $inspect($dataNotes)
+   $inspect($dataNotes);
 </script>
 
 <header class="flex justify-between w-100 pt-3">
@@ -92,26 +92,49 @@
 <Navbar />
 
 <h1 class="font-berkshire_swash text-4xl text-center my-10">Nota</h1>
-<input
-   type="text"
-   name="titulo"
-   id="title"
-   bind:value={nota.titulo}
-   class="shadow-elevated_shadow rounded-lg text-xl"
-/>
-<input
-   type="text"
-   name="etiqueta"
-   id="etiqueta"
-   bind:value={nota.etiqueta}
-   class="shadow-elevated_shadow rounded-lg text-xl"
-/>
 
-<select name="estado" id="estado" bind:value={nota.estadoID}>
-   {#each $states as state}
-      <option value={state.estadoID}>{state.estado}</option>
-   {/each}
-</select>
+<div class="grid grid-cols-3 gap-3">
+   <div class="flex flex-col">
+      <label for="Titulo" class="font-lato text-lg font-medium mb-3"
+         >Titulo:</label
+      >
+      <input
+         type="text"
+         name="titulo"
+         id="title"
+         bind:value={nota.titulo}
+         class="shadow-elevated_shadow rounded-lg text-xl pl-2"
+      />
+   </div>
+   <div class="flex flex-col">
+      <label for="Etiqueta" class="font-lato text-lg font-medium mb-3"
+         >Etiqueta:</label
+      >
+      <input
+         type="text"
+         name="etiqueta"
+         id="etiqueta"
+         bind:value={nota.etiqueta}
+         class="shadow-elevated_shadow rounded-lg text-xl pl-2"
+      />
+   </div>
+
+   <div class="flex flex-col">
+      <label for="Estado" class="font-lato text-lg font-medium mb-3"
+         >Estado:</label
+      >
+      <select
+         name="estado"
+         id="estado"
+         bind:value={nota.estadoID}
+         class="pl-2 text-xl rounded-lg"
+      >
+         {#each $states as state}
+            <option value={state.estadoID}>{state.estado}</option>
+         {/each}
+      </select>
+   </div>
+</div>
 
 <div class="my-10"></div>
 
