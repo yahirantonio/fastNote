@@ -36,7 +36,7 @@
       <h2 class="font-lato text-2xl font-bold mb-3">{titulo}</h2>
    </div>
    <div class="flex-1">
-      <p class="font-montserrat text-sm mb-10">{limitText(texto)}</p>
+      {@html texto}
    </div>
    <div class="flex justify-between">
       <p class="font-montserrat text-sm">{fecha}</p>

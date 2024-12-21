@@ -16,9 +16,10 @@
 
    onMount(() => {
       quill = new Quill("#editor", { theme: "snow" });
+      quill.on('text-change',()=>{
+         nota.content = quill.getContents()
+      })
    });
-
-   let date = $state("");
 
    let initialNote = {
       titulo: "Titulo...",
@@ -60,7 +61,8 @@
    });
 
    function saveNote() {
-      if (id) putNote(nota);
+      nota.texto = quill.getSemanticHTML().replace(/&nbsp;/g, ' ');
+      if (id) putNote({ ...nota });
       else postNote(nota);
    }
 
@@ -71,7 +73,8 @@
       } else replace("/");
    }
 
-   // $inspect($dataNotes);
+   $inspect(nota);
+   $inspect($dataNotes)
 </script>
 
 <header class="flex justify-between w-100 pt-3">
@@ -79,7 +82,7 @@
       <Hamburguer />
    </div>
    <div class="flex-none">
-      <Date bind:date />
+      <Date bind:date={nota.fecha} />
    </div>
 </header>
 
