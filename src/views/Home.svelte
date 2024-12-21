@@ -3,7 +3,7 @@
    import Hamburguer from "../lib/Hamburguer.svelte";
    import Search from "../lib/Search.svelte";
    import NoteCard from "../lib/NoteCard.svelte";
-   import { dataNotes } from "../stores/notes.svelte";
+   import { dataNotes, today } from "../stores/notes.svelte";
    import Fuse from "fuse.js";
     import Pills from "../lib/animation/Pills.svelte";
     import Navbar from "./shared/Navbar.svelte";
@@ -13,11 +13,12 @@
    };
 
    let title = $state("");
-   let date = $state("");
+   let date = $state(today);
 
    let notesShow = $derived.by(() => {
-      let notes = $dataNotes.slice(0, 5);
-      if(date.length) notes = notes.filter(note => note.fecha == date)
+      let notes;
+      if(date.length) notes = $dataNotes.filter(note => note.fecha == date)
+      notes = notes.slice(0, 5);
 
       const fuse = new Fuse(notes, fuseOptions);
       return title.length
