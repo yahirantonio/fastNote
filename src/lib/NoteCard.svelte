@@ -12,10 +12,6 @@
 
    let isSelected = $state(false);
 
-   function limitText(text) {
-      return text.length > 250 ? text.slice(0, 250) + "..." : text;
-   }
-
    function goToNote() {
       push("/note/" + notaID);
    }
@@ -36,7 +32,7 @@
       <h2 class="font-lato text-2xl font-bold mb-3">{titulo}</h2>
    </div>
    <div class="flex-1">
-      {@html texto}
+      {@html texto.replaceAll('&nbsp;',' ')}
    </div>
    <div class="flex justify-between">
       <p class="font-montserrat text-sm">{fecha}</p>

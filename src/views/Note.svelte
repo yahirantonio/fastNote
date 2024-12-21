@@ -61,7 +61,7 @@
    });
 
    function saveNote() {
-      nota.texto = quill.getSemanticHTML().replace(/&nbsp;/g, ' ');
+      nota.texto = quill.getSemanticHTML()
       if (id) putNote({ ...nota });
       else postNote(nota);
    }
