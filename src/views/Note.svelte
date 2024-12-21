@@ -2,7 +2,7 @@
    import { onMount, untrack } from "svelte";
    import Date from "../lib/Date.svelte";
    import Hamburguer from "../lib/Hamburguer.svelte";
-   import { dataNotes, states } from "../stores/notes.svelte";
+   import { dataNotes, states, today } from "../stores/notes.svelte";
    import Navbar from "./shared/Navbar.svelte";
    import Quill from "quill";
    import "quill/dist/quill.snow.css";
@@ -25,7 +25,7 @@
       titulo: "Titulo...",
       texto: "Escribir algo....",
       etiqueta: "Personal",
-      fecha: "",
+      fecha: today,
       content: { ops: [{ insert: "Escribir algo....\n" }] },
       estadoID: 0,
    };
