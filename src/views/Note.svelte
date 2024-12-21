@@ -6,6 +6,8 @@
    import Navbar from "./shared/Navbar.svelte";
    import Quill from "quill";
    import "quill/dist/quill.snow.css";
+   import { dropNote, postNote, putNote } from "../utils/api";
+   import { replace } from "svelte-spa-router";
 
    const { params } = $props();
    const id = $derived(params.id);
@@ -34,12 +36,13 @@
       untrack(() => {
          if (id)
             nota = $dataNotes.find((note) => note.notaID == id) ?? initialNote;
+         // push to #/note
          else nota = initialNote;
          quill.setContents(nota.content.ops);
       });
    });
 
-   let needsSave = $derived.by(() => {
+   let blockSaveButton = $derived.by(() => {
       let block = true;
       if (id) {
          let compare;
@@ -55,6 +58,18 @@
       } else block = false;
       return block;
    });
+
+   function saveNote() {
+      if (id) putNote(nota);
+      else postNote(nota);
+   }
+
+   function deleteNote() {
+      if (id) {
+         dropNote(nota.notaID);
+         replace("/")
+      } else replace("/");
+   }
 
    // $inspect($dataNotes);
 </script>
@@ -96,10 +111,17 @@
 
 <div id="editor" class="bg-white"></div>
 
-<button
-   class="disabled:bg-gray-600 hover:bg-green-500 bg-green-600 rounded-md px-3 py-1 text-white font-montserrat text-lg float-right mt-10"
-   disabled={needsSave}>Save</button
->
+<div class="flex gap-6 justify-end mt-6">
+   <button
+      class="bg-red-600 rounded-md px-3 py-1 text-white font-montserrat text-lg"
+      onclick={deleteNote}>Delete</button
+   >
+   <button
+      class="disabled:bg-gray-600 hover:bg-green-500 bg-green-600 rounded-md px-3 py-1 text-white font-montserrat text-lg"
+      disabled={blockSaveButton}
+      onclick={saveNote}>Save</button
+   >
+</div>
 
 <style lang="postcss">
 </style>
