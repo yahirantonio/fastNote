@@ -19,6 +19,7 @@
   "dependencies": {
     "flatpickr": "^4.6.13",
     "fuse.js": "^7.0.0",
+    "quill": "^2.0.3",
     "svelte-spa-router": "^4.0.1"
   }
 }
