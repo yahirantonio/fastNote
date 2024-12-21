@@ -63,7 +63,10 @@
    function saveNote() {
       nota.texto = quill.getSemanticHTML()
       if (id) putNote({ ...nota });
-      else postNote(nota);
+      else {
+         const notaID = postNote(nota);
+         replace("/note/" + notaID);
+      } 
    }
 
    function deleteNote() {
