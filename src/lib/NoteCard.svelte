@@ -1,4 +1,6 @@
 <script>
+   import { push } from "svelte-spa-router";
+
    const {
       notaID,
       titulo = "sin titulo...",
@@ -13,6 +15,10 @@
    function limitText(text) {
       return text.length > 250 ? text.slice(0, 250) + "..." : text;
    }
+
+   function goToNote() {
+      push("/note/" + notaID);
+   }
 </script>
 
 <div
@@ -23,6 +29,8 @@
    onmouseenter={() => (isSelected = true)}
    onmouseleave={() => (isSelected = false)}
    style={isSelected && "transform: scale(1.2);"}
+   onclick={goToNote}
+   onkeydown={(e) => e.key === "Enter" && goToNote()}
 >
    <div>
       <h2 class="font-lato text-2xl font-bold mb-3">{titulo}</h2>
@@ -40,14 +48,14 @@
 
 <style>
    .shadow-0 {
-      box-shadow: 0px 10px 40px -5px rgba(153, 253, 255, .5);
+      box-shadow: 0px 10px 40px -5px rgba(153, 253, 255, 0.5);
    }
 
    .shadow-1 {
-      box-shadow: 0px 10px 40px -5px rgba(184, 255, 153, .5);
+      box-shadow: 0px 10px 40px -5px rgba(184, 255, 153, 0.5);
    }
 
    .shadow-2 {
-      box-shadow: 0px 10px 40px -5px rgba(255, 153, 153, .5);
+      box-shadow: 0px 10px 40px -5px rgba(255, 153, 153, 0.5);
    }
 </style>
