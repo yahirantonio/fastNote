@@ -35,19 +35,24 @@
    $effect(() => {
       id;
       untrack(() => {
-         if (id)
-            nota = $dataNotes.find((note) => note.notaID == id) ?? initialNote;
-         // push to #/note
+         if (id >= 0){
+            nota = $dataNotes.find((note) => note.notaID == id);
+            if (!nota) {
+               nota = initialNote;
+               replace("/note/");
+            }
+         }
          else nota = initialNote;
          quill.setContents(nota.content.ops);
       });
    });
 
+   $inspect($dataNotes)
+
    let blockSaveButton = $derived.by(() => {
       let block = true;
-      if (id) {
-         let compare;
-         compare = $dataNotes.find((note) => note.notaID == id);
+      let compare = $dataNotes.find((note) => note.notaID == id);
+      if (id && compare) {
          block = Object.keys(nota).every((value) => {
             if (value === "content") {
                return (
