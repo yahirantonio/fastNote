@@ -18,7 +18,11 @@
    let notesShow = $derived.by(() => {
       let notes;
       if(date.length) notes = $dataNotes.filter(note => note.fecha == date)
-      notes = notes.slice(0, 5);
+      else return [];
+
+      let last = notes.length;
+      notes = notes.slice(last - 5, last);
+      notes.reverse();
 
       const fuse = new Fuse(notes, fuseOptions);
       return title.length
