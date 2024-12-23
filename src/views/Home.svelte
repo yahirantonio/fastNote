@@ -26,11 +26,6 @@
          : notes;
    });
 
-   
-
-   $inspect(date)
-   $inspect($dataNotes)
-
    let noteSelected = $state(null);
 
    let peakSequence = $derived.by(() => {

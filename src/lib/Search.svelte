@@ -1,7 +1,6 @@
 <script>
    let {title = $bindable()} = $props()
    let mouseEnter = $state(false);
-   // let title = $state("");
    let expand = $derived(title.length || mouseEnter ? true : false);
 </script>
 

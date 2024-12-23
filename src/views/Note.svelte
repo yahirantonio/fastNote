@@ -76,8 +76,6 @@
       } else replace("/");
    }
 
-   $inspect(nota);
-   $inspect($dataNotes);
 </script>
 
 <header class="flex justify-between w-100 pt-3">
